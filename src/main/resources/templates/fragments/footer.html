@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<body>
+<footer th:fragment="footer" class="lyly-footer py-3">
+    <div class="container text-center small text-lyly-doux">
+        <span>&copy; <span th:text="${#temporals.year(#temporals.createNow())}">2026</span> Lylybot. Tous droits réservés.</span>
+    </div>
+</footer>
+</body>
+</html>

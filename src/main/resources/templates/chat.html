@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{base :: layoutApp(~{::title}, ~{::div.app})}">
+<head>
+    <title>Lylybot</title>
+</head>
+<body>
+<div class="app" id="app">
+
+    <!-- Barre latérale -->
+    <aside class="app-side">
+        <div class="app-side-haut">
+            <a href="/chat" th:href="@{/chat}" class="app-side-logo">
+                <img src="/img/logo.png" th:src="@{/img/logo.png}" alt="Lylybot">
+            </a>
+            <button type="button" class="app-icone" id="btn-recherche" aria-label="Rechercher"><svg class="ic" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg></button>
+            <button type="button" class="app-icone" id="btn-menu" aria-label="Réduire le menu" aria-expanded="true"><svg class="ic" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M9 4v16"/></svg></button>
+        </div>
+
+        <input type="search" id="filtre" class="app-filtre" placeholder="Rechercher une conversation" aria-label="Rechercher une conversation" autocomplete="off">
+
+        <a href="/chat" th:href="@{/chat}" class="app-new" id="btn-nouvelle"><svg class="ic" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 4l5 5L9 20H4v-5L15 4z"/><path d="M13 6l5 5"/></svg> Nouvelle conversation</a>
+
+        <nav class="app-menu">
+            <a href="#"><svg class="ic" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg> Historique</a>
+        </nav>
+
+        <div class="app-historique" id="historique">
+            <div class="app-groupe" id="groupe-aujourdhui" th:if="${!#lists.isEmpty(aujourdhui)}">Aujourd'hui <svg class="ic" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></div>
+            <a href="#" class="app-conv" th:each="c : ${aujourdhui}" th:text="${c.titre}">Titre</a>
+            <div class="app-groupe" th:if="${!#lists.isEmpty(avant)}">Hier et avant <svg class="ic" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></div>
+            <a href="#" class="app-conv" th:each="c : ${avant}" th:text="${c.titre}">Titre</a>
+            <div class="app-vide" th:if="${#lists.isEmpty(aujourdhui) and #lists.isEmpty(avant)}">Aucune conversation</div>
+        </div>
+
+        <div class="app-astuce" id="astuce">
+            <button type="button" class="app-icone app-astuce-x" aria-label="Fermer"
+                    onclick="document.getElementById('astuce').remove()"><svg class="ic" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg></button>
+            <div class="app-astuce-ico"><svg class="ic" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8L12 3z"/></svg></div>
+            <strong>Astuce</strong>
+            <p>Choisissez votre modèle avant de commencer : il reste le même pendant toute la conversation.</p>
+        </div>
+
+        <nav class="app-menu app-menu-bas">
+            <a href="#"><svg class="ic" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg> Paramètres</a>
+            <a href="#"><svg class="ic" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.1 9a3 3 0 0 1 5.8 1c0 2-3 3-3 3M12 17h.01"/></svg> Aide</a>
+            <a href="/" th:href="@{/}"><svg class="ic" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9"/></svg> Déconnexion</a>
+        </nav>
+    </aside>
+
+    <!-- Zone principale -->
+    <section class="app-main">
+        <div class="app-top">
+            <label class="app-select-wrap">
+                <svg class="ic" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8L12 3z"/></svg>
+                <select class="app-select" aria-label="Modèle">
+                    <option th:each="m : ${modeles}" th:value="${m.id}" th:text="${m.nom}">modèle</option>
+                </select>
+            </label>
+            <div class="app-top-droite">
+                <button type="button" class="app-icone" aria-label="Messages"><svg class="ic" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></button>
+                <button type="button" class="app-icone app-cloche" id="btn-cloche" aria-label="Notifications"><svg class="ic" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9M13.7 21a2 2 0 0 1-3.4 0"/></svg></button>
+                <span class="app-avatar" aria-hidden="true">L</span>
+            </div>
+        </div>
+
+        <div class="app-fil" id="fil" aria-live="polite"></div>
+
+        <div class="app-centre">
+            <!-- Logo 3D (même scène Three.js que l'accueil) ; l'image sert de repli sans WebGL -->
+            <div id="logo3d" class="app-3d" aria-hidden="true">
+                <canvas></canvas>
+                <img class="app-3d-repli" src="/img/pictogramme.png" th:src="@{/img/pictogramme.png}" alt="">
+            </div>
+            <h1 class="app-titre">Que puis-je faire pour vous ?</h1>
+
+            <form class="app-saisie" id="formulaire">
+                <textarea id="saisie" rows="1" placeholder="Demandez n'importe quoi" aria-label="Votre message"></textarea>
+                <div class="app-saisie-bas">
+                    <button type="button" class="app-pastille"><svg class="ic" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.5l-8.5 8.5a5 5 0 0 1-7-7L14 5.5a3.3 3.3 0 0 1 4.7 4.7L10.2 18.7a1.7 1.7 0 0 1-2.4-2.4L15 9"/></svg> Joindre</button>
+                    <button type="button" class="app-pastille"><svg class="ic" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg> Rechercher</button>
+                    <button type="button" class="app-pastille"><svg class="ic" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-4 10.5c.7.7 1 1.5 1 2.5h6c0-1 .3-1.8 1-2.5A6 6 0 0 0 12 3z"/></svg> Raisonner</button>
+                    <button type="submit" class="app-envoyer" id="btn-envoyer" disabled>Envoyer <svg class="ic" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+                </div>
+            </form>
+
+            <div class="app-suggestions" id="suggestions">
+                <button type="button" class="app-pastille" data-texte="Résume ce texte : "><svg class="ic" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h9l4 4v14H6z"/><path d="M14 3v5h5M9 13h7M9 17h7"/></svg> Résumer</button>
+                <button type="button" class="app-pastille" data-texte="Traduis en anglais : "><svg class="ic" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h9M8.5 3v2M6 5c0 4 3 7 7 8M12 5c0 4-3 7-7 8M14 21l4-9 4 9M15.5 18h5"/></svg> Traduire</button>
+                <button type="button" class="app-pastille" data-texte="Rédige un message pour "><svg class="ic" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg> Rédiger</button>
+                <button type="button" class="app-pastille" data-texte="Corrige ce texte : "><svg class="ic" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12l5 5L20 6"/></svg> Corriger</button>
+            </div>
+        </div>
+
+        <p class="app-mentions">En écrivant à Lylybot, vous acceptez les <a href="#">Conditions</a> et la <a href="#">Politique de confidentialité</a>.</p>
+    </section>
+
+    <script type="module" src="/js/accueil3d.js" th:src="@{/js/accueil3d.js}"></script>
+    <script src="/js/chat.js" th:src="@{/js/chat.js}"></script>
+</div>
+</body>
+</html>

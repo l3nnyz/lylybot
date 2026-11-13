@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{base :: layoutSimple(~{::title}, ~{::main})}">
+<head>
+    <title>Connexion · Lylybot</title>
+</head>
+<body>
+<main class="auth">
+    <div class="auth-container">
+        <div class="auth-nav-row">
+            <svg class="auth-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+            Connectez-vous pour continuer vers Lyly...
+        </div>
+
+        <!-- Formulaire non fonctionnel pour l'instant (Spring Security au Sprint 2) -->
+        <form autocomplete="off" method="post" action="#" th:action="@{/login}">
+            <input type="email" class="auth-input" id="email" name="email" autocomplete="off" readonly onfocus="this.removeAttribute('readonly')"
+                   placeholder="Adresse e-mail" aria-label="Adresse e-mail">
+
+            <input type="password" class="auth-input" id="motDePasse" name="motDePasse"
+                   autocomplete="new-password" readonly onfocus="this.removeAttribute('readonly')" placeholder="Mot de passe" aria-label="Mot de passe">
+
+            <div class="auth-actions">
+                <label class="auth-check">
+                    Se souvenir de moi
+                    <input type="checkbox" name="remember">
+                    <span class="box"></span>
+                </label>
+                <a href="#" class="auth-link">Mot de passe oublié ?</a>
+            </div>
+
+            <button type="submit" class="auth-submit">Se connecter</button>
+
+            <div class="auth-register">
+                Nouveau sur Lyly? <a href="#" class="auth-link auth-link-blue">Créer un compte</a>
+            </div>
+        </form>
+    </div>
+</main>
+</body>
+</html>

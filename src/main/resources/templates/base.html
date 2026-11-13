@@ -1,10 +1,56 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr" data-bs-theme="dark" xmlns:th="http://www.thymeleaf.org"
+      th:fragment="layout(titre, contenu)">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title th:replace="${titre}">Lylybot</title>
+    <link rel="preload" href="/vendor/fonts/inter-latin-wght-normal.woff2" th:href="@{/vendor/fonts/inter-latin-wght-normal.woff2}"
+          as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="/vendor/css/bootstrap.min.css" th:href="@{/vendor/css/bootstrap.min.css}">
+    <link rel="stylesheet" href="/css/lylybot.css" th:href="@{/css/lylybot.css}">
 </head>
-<body>
+<body class="d-flex flex-column min-vh-100">
 
+<header th:replace="~{fragments/header :: header}"></header>
+
+<main class="flex-grow-1" th:replace="${contenu}">
+    <!-- le contenu de la page est injecté ici -->
+</main>
+
+<footer th:replace="~{fragments/footer :: footer}"></footer>
+
+<script src="/vendor/js/bootstrap.bundle.min.js" th:src="@{/vendor/js/bootstrap.bundle.min.js}"></script>
+</body>
+</html>
+
+<!-- Variante avec header (logo) mais sans footer (connexion) -->
+<html lang="fr" data-bs-theme="dark" xmlns:th="http://www.thymeleaf.org"
+      th:fragment="layoutSimple(titre, contenu)">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title th:replace="${titre}">Lylybot</title>
+    <link rel="stylesheet" href="/vendor/css/bootstrap.min.css" th:href="@{/vendor/css/bootstrap.min.css}">
+    <link rel="stylesheet" href="/css/lylybot.css" th:href="@{/css/lylybot.css}">
+</head>
+<body class="d-flex flex-column min-vh-100">
+<header th:replace="~{fragments/header :: header}"></header>
+<main class="flex-grow-1 d-flex" th:replace="${contenu}"></main>
+<script src="/vendor/js/bootstrap.bundle.min.js" th:src="@{/vendor/js/bootstrap.bundle.min.js}"></script>
+</body>
+</html>
+
+<!-- Variante plein écran sans header ni footer (espace utilisateur connecté) -->
+<html lang="fr" data-bs-theme="dark" xmlns:th="http://www.thymeleaf.org"
+      th:fragment="layoutApp(titre, contenu)">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title th:replace="${titre}">Lylybot</title>
+    <link rel="stylesheet" href="/css/chat.css" th:href="@{/css/chat.css}">
+</head>
+<body class="app-body">
+<div th:replace="${contenu}"></div>
 </body>
 </html>

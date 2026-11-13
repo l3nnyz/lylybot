@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{base :: layout(~{::title}, ~{::main})}">
+<head>
+    <title>Lylybot · Le chatbot multi-modèles</title>
+</head>
+<body>
+<main class="flex-grow-1 accueil-main">
+
+    <!-- Fond animé : shader GLSL (static/js/accueil-fond.js) -->
+    <canvas id="fond-shader" class="fond-shader" aria-hidden="true"></canvas>
+
+    <!-- Hero : accroche à gauche, pictogramme 3D à droite -->
+    <section class="container accueil-hero">
+        <div class="row align-items-center g-5">
+            <div class="col-lg-6">
+                <h1 class="accueil-titre">Toutes les IA.<br>Une seule conversation.</h1>
+                <p class="accueil-sous-titre">
+                    Choisissez votre modèle, posez vos questions, retrouvez vos échanges.
+                </p>
+                <a href="/login" th:href="@{/login}" class="btn btn-lyly px-4 py-2">Commencer</a>
+            </div>
+
+            <div class="col-lg-6">
+                <!-- Scène Three.js (static/js/accueil3d.js). L'image sert de repli si WebGL est indisponible. -->
+                <div id="logo3d" class="accueil-3d" aria-hidden="true">
+                    <canvas></canvas>
+                    <img class="accueil-3d-repli" src="/img/pictogramme.png" th:src="@{/img/pictogramme.png}" alt="">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Comment ça marche -->
+    <section class="accueil-etapes">
+        <div class="container">
+            <div class="row g-5">
+                <div class="col-md-4">
+                    <div class="etape-num">01</div>
+                    <h2 class="h4">Choisissez un modèle</h2>
+                    <p class="text-lyly-doux mb-0">Un fournisseur, un modèle, au début de la conversation. Il reste le même jusqu'au bout.</p>
+                </div>
+                <div class="col-md-4">
+                    <div class="etape-num">02</div>
+                    <h2 class="h4">Discutez</h2>
+                    <p class="text-lyly-doux mb-0">Les réponses s'affichent proprement : listes, tableaux et code sont mis en forme.</p>
+                </div>
+                <div class="col-md-4">
+                    <div class="etape-num">03</div>
+                    <h2 class="h4">Retrouvez tout</h2>
+                    <p class="text-lyly-doux mb-0">Vos conversations sont conservées. Relisez-les ou supprimez-les quand vous voulez.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script type="module" src="/js/accueil-fond.js" th:src="@{/js/accueil-fond.js}"></script>
+    <script type="module" src="/js/accueil3d.js" th:src="@{/js/accueil3d.js}"></script>
+</main>
+</body>
+</html>

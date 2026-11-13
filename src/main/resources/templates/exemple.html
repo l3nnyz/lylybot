@@ -1,10 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<!-- Modèle de page : dupliquer ce fichier pour créer un nouvel écran -->
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{base :: layout(~{::title}, ~{::main})}">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Titre de la page · Lylybot</title>
 </head>
 <body>
-
+<main class="container py-5">
+    <h1>Titre de la page</h1>
+</main>
 </body>
 </html>

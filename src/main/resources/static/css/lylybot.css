@@ -1,0 +1,400 @@
+/* Charte graphique Lylybot : noir #000, charcoal #121212, blanc #FFF */
+
+@font-face {
+    font-family: "Inter";
+    src: url("../vendor/fonts/inter-latin-wght-normal.woff2") format("woff2");
+    font-weight: 100 900;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "JetBrains Mono";
+    src: url("../vendor/fonts/jetbrains-mono-latin-wght-normal.woff2") format("woff2");
+    font-weight: 100 800;
+    font-display: swap;
+}
+
+:root {
+    --lyly-noir: #000000;
+    --lyly-charcoal: #121212;
+    --lyly-blanc: #ffffff;
+    --lyly-bordure: #2a2a2a;
+    --lyly-texte-doux: #a1a1a1;
+
+    --bs-body-font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+    --bs-font-monospace: "JetBrains Mono", SFMono-Regular, Menlo, Consolas, monospace;
+    --bs-body-bg: var(--lyly-noir);
+    --bs-body-color: var(--lyly-blanc);
+    --bs-border-color: var(--lyly-bordure);
+}
+
+html {
+    font-size: 14px;
+}
+
+body {
+    background-color: var(--lyly-noir);
+    color: var(--lyly-blanc);
+    font-family: var(--bs-body-font-family);
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: "Inter", sans-serif;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+}
+
+code, pre, kbd, samp {
+    font-family: var(--bs-font-monospace);
+}
+
+.text-lyly-doux {
+    color: var(--lyly-texte-doux);
+}
+
+/* Header / footer */
+.lyly-header,
+.lyly-footer {
+    position: relative;
+    z-index: 1;
+    background-color: transparent;
+    border-color: var(--lyly-bordure) !important;
+}
+
+.lyly-logo {
+    height: 56px;
+    width: auto;
+}
+
+/* Carte charcoal (zones d'échange, formulaires) */
+.lyly-card {
+    background-color: var(--lyly-charcoal);
+    border: 1px solid var(--lyly-bordure);
+    border-radius: 0.75rem;
+}
+
+/* Champs de formulaire */
+.lyly-card .form-control {
+    background-color: var(--lyly-noir);
+    color: var(--lyly-blanc);
+    border: 1px solid var(--lyly-bordure);
+    padding: 0.4rem 0.7rem;
+}
+
+.lyly-card .form-control::placeholder {
+    color: #6b6b6b;
+}
+
+.lyly-card .form-control:focus {
+    border-color: var(--lyly-blanc);
+    box-shadow: 0 0 0 0.2rem rgba(255, 255, 255, 0.15);
+}
+
+.lyly-card .form-label {
+    font-weight: 500;
+}
+
+/* Bouton principal : blanc sur fond noir */
+.btn-lyly {
+    --bs-btn-color: var(--lyly-noir);
+    --bs-btn-bg: var(--lyly-blanc);
+    --bs-btn-border-color: var(--lyly-blanc);
+    --bs-btn-hover-color: var(--lyly-blanc);
+    --bs-btn-hover-bg: transparent;
+    --bs-btn-hover-border-color: var(--lyly-blanc);
+    --bs-btn-active-color: var(--lyly-blanc);
+    --bs-btn-active-bg: transparent;
+    --bs-btn-active-border-color: var(--lyly-blanc);
+    --bs-btn-focus-shadow-rgb: 255, 255, 255;
+    font-weight: 600;
+    border-radius: 0.6rem;
+}
+
+.btn-lyly-outline {
+    --bs-btn-color: var(--lyly-blanc);
+    --bs-btn-border-color: var(--lyly-bordure);
+    --bs-btn-hover-color: var(--lyly-noir);
+    --bs-btn-hover-bg: var(--lyly-blanc);
+    --bs-btn-hover-border-color: var(--lyly-blanc);
+    --bs-btn-focus-shadow-rgb: 255, 255, 255;
+    border-radius: 0.6rem;
+}
+
+a {
+    color: var(--lyly-blanc);
+}
+
+a:hover {
+    color: var(--lyly-texte-doux);
+}
+
+/* ---------- Page de connexion (style inspiré de vape.gg/login) ---------- */
+.auth {
+    --auth-muted: #7a7580;
+    display: flex;
+    flex: auto;
+    align-items: center;
+}
+
+.auth-container {
+    width: 100%;
+    max-width: 320px;
+    margin: 0 auto;
+    padding: 0 12px;
+}
+
+.auth-nav-row {
+    display: flex;
+    align-items: center;
+    font-size: 18px;
+    margin-bottom: 24px;
+}
+
+.auth-arrow {
+    margin-right: 10px;
+    flex-shrink: 0;
+}
+
+.auth-label {
+    display: block;
+    font-size: 12px;
+    color: var(--auth-muted);
+    margin-bottom: 4px;
+}
+
+.auth-input {
+    display: block;
+    width: 100%;
+    height: 40px;
+    font-size: 14px;
+    font-weight: 300;
+    color: var(--lyly-blanc);
+    background: var(--lyly-charcoal);
+    border: 1px solid transparent;
+    border-radius: 3px;
+    padding: 10px 16px;
+    margin-bottom: 12px;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.auth-input::placeholder {
+    color: #4a464c;
+}
+
+.auth-input:hover,
+.auth-input:focus {
+    border-color: rgba(255, 255, 255, 0.35);
+}
+
+.auth-input:focus {
+    box-shadow: 0 0 6px rgba(255, 255, 255, 0.2);
+}
+
+.auth-actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 4px 0 40px;
+    font-size: 12px;
+}
+
+.auth-check {
+    position: relative;
+    padding-left: 24px;
+    color: var(--auth-muted);
+    cursor: pointer;
+    user-select: none;
+    line-height: 16px;
+}
+
+.auth-check input {
+    position: absolute;
+    opacity: 0;
+    height: 0;
+    width: 0;
+}
+
+.auth-check .box {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 16px;
+    height: 16px;
+    border: 1px solid #292329;
+    border-radius: 2px;
+    transition: all 0.3s ease;
+}
+
+.auth-check:hover .box {
+    border-color: var(--lyly-blanc);
+}
+
+.auth-check input:checked ~ .box {
+    background: var(--lyly-blanc);
+    border-color: var(--lyly-blanc);
+}
+
+.auth-check input:checked ~ .box::after {
+    content: "";
+    position: absolute;
+    left: 5px;
+    top: 2px;
+    width: 4px;
+    height: 8px;
+    border: solid var(--lyly-noir);
+    border-width: 0 1px 1px 0;
+    transform: rotate(45deg);
+}
+
+.auth-link {
+    color: var(--auth-muted);
+    border-bottom: 1px dotted var(--auth-muted);
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.auth-link:hover {
+    color: var(--lyly-blanc);
+    border-bottom-color: var(--lyly-blanc);
+}
+
+.auth-submit {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 40px;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--lyly-noir);
+    background: var(--lyly-blanc);
+    border: 0;
+    border-radius: 3px;
+    transition: all 0.3s ease;
+}
+
+.auth-submit:hover {
+    background: #d4d4d4;
+}
+
+.auth-register {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+    font-size: 12px;
+    color: var(--auth-muted);
+}
+
+.auth-link-blue {
+    color: #1e80a6;
+    border-bottom-color: #1e80a6;
+}
+
+.auth-link-blue:hover {
+    color: #36a3cc;
+    border-bottom-color: #36a3cc;
+}
+
+/* ---------- Page d'accueil ---------- */
+.accueil-main { position: relative; overflow: hidden; }
+.accueil-main::before {
+    content: "";
+    position: absolute;
+    top: -220px;
+    left: 50%;
+    width: 900px;
+    height: 600px;
+    transform: translateX(-50%);
+    background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.11), transparent 65%);
+    pointer-events: none;
+}
+.accueil-hero {
+    position: relative;
+    display: flex;
+    align-items: center;
+    min-height: calc(100vh - 150px);
+    padding: 2rem 0 4rem;
+}
+.accueil-hero > .row { width: 100%; }
+.accueil-titre {
+    font-size: clamp(2.4rem, 5.5vw, 4rem);
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    margin-bottom: 1.25rem;
+}
+.accueil-sous-titre {
+    max-width: 440px;
+    color: var(--lyly-texte-doux);
+    font-size: 1.05rem;
+    margin-bottom: 2rem;
+}
+.accueil-mots { margin-top: 1.5rem; font-size: 12px; color: var(--lyly-texte-doux); }
+.accueil-mots span + span::before { content: "·"; margin: 0 0.6rem; }
+
+/* Pictogramme 3D (Three.js) */
+.accueil-3d {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    max-height: 460px;
+    margin-left: auto;
+}
+@media (max-width: 991.98px) {
+    .accueil-3d { max-height: 340px; }
+}
+.accueil-3d::before {
+    content: "";
+    position: absolute;
+    inset: 5%;
+    background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.14), transparent 62%);
+    pointer-events: none;
+}
+.accueil-3d canvas {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 0.9s ease;
+}
+.accueil-3d.pret canvas { opacity: 1; }
+/* Image de repli : visible seulement si la 3D n'est pas disponible */
+.accueil-3d-repli {
+    position: absolute;
+    inset: 12%;
+    width: 76%;
+    height: 76%;
+    object-fit: contain;
+    display: none;
+}
+.accueil-3d.sans-webgl .accueil-3d-repli { display: block; }
+.accueil-3d.sans-webgl canvas { display: none; }
+
+
+/* Étapes */
+.accueil-etapes { padding: 0 0 4rem; margin-top: -4rem; position: relative; font-size: 1.15rem; }
+.etape-num {
+    font-size: 15px !important;
+    font-family: var(--bs-font-monospace);
+    font-size: 13px;
+    color: var(--lyly-texte-doux);
+    margin-bottom: 0.6rem;
+}
+.accueil-final { padding: 1rem 0 5rem; position: relative; }
+
+/* Fond shader (plein écran, derrière tout le contenu) */
+.fond-shader {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 1.2s ease;
+}
+.fond-pret .fond-shader { opacity: 1; }
+.fond-pret .accueil-main::before { display: none; } /* le halo CSS ne sert que de repli */
