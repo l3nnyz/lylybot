@@ -374,7 +374,6 @@ a:hover {
 .accueil-3d.sans-webgl .accueil-3d-repli { display: block; }
 .accueil-3d.sans-webgl canvas { display: none; }
 
-
 /* Étapes */
 .accueil-etapes { padding: 0 0 4rem; margin-top: -4rem; position: relative; font-size: 1.15rem; }
 .etape-num {
@@ -398,3 +397,9 @@ a:hover {
 }
 .fond-pret .fond-shader { opacity: 1; }
 .fond-pret .accueil-main::before { display: none; } /* le halo CSS ne sert que de repli */
+
+.auth-erreur, .auth-info {
+    margin: 0 0 14px; padding: 10px 14px; font-size: 14px; border-radius: 10px;
+}
+.auth-erreur { color: #ff8a8a; background: rgba(255, 80, 80, 0.1); border: 1px solid rgba(255, 80, 80, 0.3); }
+.auth-info { color: #d6d6d6; background: rgba(255, 255, 255, 0.06); border: 1px solid rgba(255, 255, 255, 0.12); }

@@ -16,4 +16,7 @@ class FourniseurIA(
     var description: String? = null,
 
     var cheminLogo: String? = null,
+
+    @OneToMany(mappedBy = "fournisseur", cascade = [CascadeType.ALL], orphanRemoval = true)
+    var modeles: MutableList<ModeleIA> = mutableListOf(),
 )

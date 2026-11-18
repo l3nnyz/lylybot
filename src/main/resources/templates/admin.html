@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{base :: layoutApp(~{::title}, ~{::div.admin})}">
+<head>
+    <title>Administration · Lylybot</title>
+</head>
+<body>
+<div class="admin">
+    <div class="admin-haut">
+        <h1>Administration</h1>
+        <a href="/chat" th:href="@{/chat}" class="admin-retour">← Retour au chat</a>
+    </div>
+
+    <h2>Utilisateurs</h2>
+    <table>
+        <thead><tr><th>E-mail</th><th>Rôles</th><th>Inscrit le</th><th>Conversations</th></tr></thead>
+        <tbody>
+        <tr th:each="u : ${utilisateurs}">
+            <td th:text="${u.email}">mail</td>
+            <td><span class="badge" th:each="r : ${u.roles}" th:text="${r}">ROLE_USER</span></td>
+            <td th:text="${#temporals.format(u.dateCreation, 'dd/MM/yyyy HH:mm')}">date</td>
+            <td th:text="${#lists.size(u.conversations)}">0</td>
+        </tr>
+        </tbody>
+    </table>
+
+    <h2>Modèles d'IA</h2>
+    <table>
+        <thead><tr><th>Nom</th><th>Fournisseur</th><th>Identifiant API</th><th>Description</th></tr></thead>
+        <tbody>
+        <tr th:each="m : ${modeles}">
+            <td th:text="${m.nom}">nom</td>
+            <td th:text="${m.fournisseur?.nom}">fournisseur</td>
+            <td th:text="${m.identifiantAPI}">id</td>
+            <td th:text="${m.description}">desc</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

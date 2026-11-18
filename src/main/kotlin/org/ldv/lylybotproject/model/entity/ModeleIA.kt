@@ -13,10 +13,20 @@ class ModeleIA(
     var nom: String,
 
     @Column(nullable = false)
+    var identifiantAPI: String,
+
+    @Column(nullable = false)
     var urlAPI: String,
 
     @Column(columnDefinition = "TEXT")
     var description: String? = null,
 
     var cheminLogo: String? = null,
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "fournisseur_id")
+    var fournisseur: FourniseurIA? = null,
+
+    @OneToMany(mappedBy = "modele")
+    var conversations: MutableList<Conversation> = mutableListOf(),
 )

@@ -19,4 +19,8 @@ class Message(
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     var typeMessage: TypeMessage,
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "conversation_id", nullable = false)
+    var conversation: Conversation? = null,
 )

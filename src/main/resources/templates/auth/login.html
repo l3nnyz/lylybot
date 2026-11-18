@@ -13,13 +13,15 @@
             Connectez-vous pour continuer vers Lyly...
         </div>
 
-        <!-- Formulaire non fonctionnel pour l'instant (Spring Security au Sprint 2) -->
+        <div class="auth-erreur" role="alert" th:if="${param.erreur}">Adresse e-mail ou mot de passe incorrect.</div>
+        <div class="auth-info" role="status" th:if="${param.deconnecte}">Vous avez été déconnecté.</div>
+
         <form autocomplete="off" method="post" action="#" th:action="@{/login}">
             <input type="email" class="auth-input" id="email" name="email" autocomplete="off" readonly onfocus="this.removeAttribute('readonly')"
-                   placeholder="Adresse e-mail" aria-label="Adresse e-mail">
+                   placeholder="Adresse e-mail" required aria-label="Adresse e-mail">
 
             <input type="password" class="auth-input" id="motDePasse" name="motDePasse"
-                   autocomplete="new-password" readonly onfocus="this.removeAttribute('readonly')" placeholder="Mot de passe" aria-label="Mot de passe">
+                   autocomplete="new-password" readonly onfocus="this.removeAttribute('readonly')" placeholder="Mot de passe" required aria-label="Mot de passe">
 
             <div class="auth-actions">
                 <label class="auth-check">
